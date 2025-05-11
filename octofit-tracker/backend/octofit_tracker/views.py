@@ -4,16 +4,16 @@ from rest_framework.response import Response
 from .serializers import UserSerializer, TeamSerializer, ActivitySerializer, LeaderboardSerializer, WorkoutSerializer
 from .models import User, Team, Activity, Leaderboard, Workout
 
-@api_view(['GET', 'POST'])
+@api_view(['GET'])
 def api_root(request, format=None):
-    if request.method == 'POST':
-        return Response({"message": "POST request received"}, status=status.HTTP_201_CREATED)
-
-    base_url = '[USE CODESPACE URL]'
+    base_url = 'https://ideal-succotash-jqr74jvqq65fpr49-8000.app.github.dev/'
     return Response({
-        'users': base_url + 'api/users/?format=api',
-        'workouts': base_url + 'api/workouts/?format=api'
-    })
+        'users': base_url + 'api/users/',
+        'teams': base_url + 'api/teams/',
+        'activities': base_url + 'api/activities/',
+        'leaderboard': base_url + 'api/leaderboard/',
+        'workouts': base_url + 'api/workouts/'
+    }, content_type='application/json')
 
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
